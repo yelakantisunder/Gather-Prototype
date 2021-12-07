@@ -4,14 +4,15 @@
         <title>Gather</title>
     </head>
     <body>
-        <canvas id="myCanvas" width="1000" height="700" style="border:1px solid #000000; background-color: aqua;"></canvas>
-        <img src='office.png' id="screen" style='display: none; background-repeat: no-repeat;background-position: center;'/>
+        <canvas id="myCanvas" width="1000" height="700" style="border:1px solid #000000; background-image: url('office.png'); background-size: contain;"></canvas>
+        <img src='avatar.png' id="screen" style='display: none; background-repeat: no-repeat;background-position: center;'/>
         <script>
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             var img = document.getElementById("screen");
-            // img.src = 'office'
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, 500, 0);
+
+            document.addEventListener()
         </script>
     </body>
 </html>
