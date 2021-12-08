@@ -5,14 +5,33 @@
     </head>
     <body>
         <canvas id="myCanvas" width="1000" height="700" style="border:1px solid #000000; background-image: url('office.png'); background-size: contain;"></canvas>
-        <img src='avatar.png' id="screen" style='display: none; background-repeat: no-repeat;background-position: center;'/>
+        <!-- <img src='avatar.png' onkeypress="moveAvatar()" id="screen" style='display: none; background-repeat: no-repeat;background-position: center;'/> -->
         <script>
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
-            var img = document.getElementById("screen");
-            ctx.drawImage(img, 500, 0);
+            // var img = document.getElementById("screen");
+            // ctx.drawImage(img, 500, 0);
 
-            // document.addEventListener()
+            const img = new Image(); 
+            img.src = 'avatar.png';
+            let w= Math.floor(Math.random()*1000);
+            let h= Math.floor(Math.random()*700);      
+            img.onload = () => { 
+                ctx.drawImage(img, w, h);
+                ctx.drawImage(img, 0, 0);
+            };
+
+            // var c = document.getElementById("myCanvas");
+            // var ctx = c.getContext("2d");
+            // var img = document.getElementById("screen");
+            // ctx.drawImage(img, 500, 0);
+            
+            // document.addEventListener('keypress', moveAvatar)
+            // function moveAvatar() {
+            //     // var avatar = document.getElementById("screen");
+            //     // avatar.style.left = avatar.offsetLeft + 50 + 'px'
+            //     ctx.drawImage(img, 650, 0);
+            // }
         </script>
     </body>
 </html>
