@@ -104,7 +104,7 @@ function loadCanvas(id) {
   var img2 = new Image();
   img1.src = player1;
   console.log(player1);
-  img2.src = "8.png";
+  //img2.src = "8.png";
   let x = 0;
   let y = 0;
 
@@ -114,7 +114,7 @@ function loadCanvas(id) {
   img1.onload = () => {
     ctx.drawImage(img1, w, h);
   };
-  img2.onload = () => {
-    ctx.drawImage(img2, x, y);
-  };
+  //   img2.onload = () => {
+  //     ctx.drawImage(img2, x, y);
+  //   };
 }
