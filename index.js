@@ -1,39 +1,10 @@
-//create avatar
-
-// for(let i=0;i<10;i++){
-// let w= Math.floor(Math.random()*1000);
-// let h= Math.floor(Math.random()*700);
-// var red = Math.floor(Math.random() * 255);
-// var green = Math.floor(Math.random() * 255);
-// var blue = Math.floor(Math.random() * 255);
-// // ctx.fillStyle = '#8ED6FF';
-// ctx.fillStyle = "rgb(" + red + "," + green + "," + blue + " )";
-// ctx.fillRect(w,h,20,20);
-// }
-
-//function to generate random colors
-// function generateRandomColor() {
-// var letters = '0123456789ABCDEF';
-// var color = '#';
-// for (var i = 0; i < 6; i++) {
-// color += letters[Math.floor(Math.random() * 16)];
-// }
-// return color;
-// }
-// for(let i=0;i<10;i++){
-// let w= Math.floor(Math.random()*1000);
-// let h= Math.floor(Math.random()*700);
-// ctx.fillStyle=generateRandomColor();
-// ctx.fillRect(w,h,20,20);
-// }
-
 //Global varibales
 var obj = {};
 var id;
 let x = 0;
 let y = 0;
-let w = 500;
-let h = 500;
+let w = 300;
+let h = 300;
 
 //Function to move the avatar
 function move(e) {
@@ -65,8 +36,21 @@ function nearby() {
     )
   );
 
-  if (distance < 250) {
+  var cam = document.getElementById("cam");
+  var flag = false;
+  console.log(distance);
+  if (flag === false && distance < 250) {
     console.log("Avatar nearby turn on mic and video");
+    flag = true;
+    cam.style.display = "flex";
+    cam.style.flexDirection = "horizontal";
+    start();
+    console.log(flag);
+  } else if (distance >= 250 || flag) {
+    stop();
+    console.log("inside");
+    flag = false;
+    cam.style.display = "none";
   }
 }
 
@@ -100,3 +84,26 @@ function loadCanvas(pic) {
     obj["B"] = [x, y];
   };
 }
+var stop = function () {
+  var stream = video.srcObject;
+  var tracks = stream.getTracks();
+  for (var i = 0; i < tracks.length; i++) {
+    var track = tracks[i];
+    track.stop();
+  }
+  video.srcObject = null;
+};
+var start = function () {
+  var video = document.getElementById("video"),
+    vendorUrl = window.URL || window.webkitURL;
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+      })
+      .catch(function (error) {
+        console.log("Something went wrong!");
+      });
+  }
+};
